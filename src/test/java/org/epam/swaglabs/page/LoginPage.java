@@ -1,19 +1,27 @@
 package org.epam.swaglabs.page;
 
+//import jdk.jpackage.internal.Log;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.epam.swaglabs.User;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+//import org.junit.platform.commons.logging.Logger;
+//import org.junit.platform.commons.logging.LoggerFactory;
+//import org.junit.platform.commons.logging.LoggerFactory;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
+//import org.apache.logging.log4j.*;
 
 import java.time.Duration;
 
 public class LoginPage extends AbstractPage{
     public static String HOMEPAGE_URL = "https://www.saucedemo.com/";
+    private final Logger logger = LogManager.getRootLogger();
+            //LoggerFactory.getLogger(LoginPage.class);
 
     @FindBy(xpath = "//input[@id='user-name']")
     private WebElement username;
@@ -30,6 +38,7 @@ public class LoginPage extends AbstractPage{
     @Override
     public LoginPage openPage() {
         driver.get(HOMEPAGE_URL);
+        logger.info("Login page opened");
         return this;
     }
     public LoginPage enterUsername(String username){
@@ -41,11 +50,11 @@ public class LoginPage extends AbstractPage{
         return this;
     }
     public LoginPage clearUsername(){
-        username.clear();
+        username.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
         return this;
     }
     public LoginPage clearPassword(){
-        password.clear();
+        password.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
         return this;
     }
     public AbstractPage login(){

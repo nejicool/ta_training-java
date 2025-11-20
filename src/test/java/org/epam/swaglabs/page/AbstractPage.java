@@ -18,7 +18,7 @@ public abstract class AbstractPage {
     public WebElement findSingleElementContainingText(String text){
        WebElement webElement = findElementsContainingText(text)
                .stream()
-               .findFirst().orElseThrow(()->new RuntimeException("No element"));
+               .findFirst().orElseThrow(()->new RuntimeException("No element!!!"));
         return webElement;
     }
     public List<WebElement> findElementsContainingText(String text){

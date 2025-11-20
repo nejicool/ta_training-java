@@ -13,8 +13,8 @@ public class DriverSingleton{
     public static WebDriver getDriver(){
         if(driver == null){
             //For custom properties creation
-//            switch (System.getProperty("browser")){
-                switch ("firefox"){
+            switch (System.getProperty("browser")){
+//                switch ("edge"){
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
